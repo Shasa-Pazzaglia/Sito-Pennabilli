@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pennabilli – Un mondo di socialità e cultura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1b3a6b;
+    --navy-dark: #132d56;
+    --gold: #c9a84c;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --accent: #2d6fa4;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ─────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--white);
+    letter-spacing: .02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,.85);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    transition: color .2s;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform .25s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--white); }
+
+  /* ── HERO ────────────────────────────────────────────────── */
+  #home {
+    margin-top: 64px;
+    position: relative;
+    height: 55vw;
+    max-height: 520px;
+    min-height: 300px;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    display: block;
+  }
+
+  /* Fallback gradient if image fails */
+  .hero-fallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--navy) 0%, #2d6fa4 50%, #4a9eca 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    top: 0;
+    background: linear-gradient(to top, rgba(27,58,107,.55) 0%, transparent 50%);
+  }
+
+  .hero-caption {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background: rgba(27,58,107,.78);
+    backdrop-filter: blur(4px);
+    color: var(--white);
+    padding: .9rem 1.3rem;
+    border-radius: 8px;
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 600;
+    line-height: 1.3;
+    max-width: 320px;
+  }
+
+  /* ── SECTION COMMONS ─────────────────────────────────────── */
+  .section {
+    padding: 3.5rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+
+  /* ── EVENTI ──────────────────────────────────────────────── */
+  .eventi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .evento-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+  }
+
+  .evento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(27,58,107,.15);
+  }
+
+  .evento-poster {
+    width: 100%;
+    aspect-ratio: 4/4;
+    object-fit: cover;
+    background: var(--navy);
+    display: flex;
+    justify-content: center;
+  }
+
+  .evento-poster-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  /* Venolta */
+  .poster-venolta {
+    background: #7a2035;
+  }
+  .poster-venolta-inner {
+    font-family: 'Playfair Display', serif;
+    color: #e8c4a0;
+    font-size: 2.5rem;
+    line-height: 1;
+    text-align: center;
+    padding: 1rem;
+    letter-spacing: .08em;
+  }
+
+  /* Artisti in Piazza */
+  .poster-artisti {
+    background: #f0f700;
+    position: relative;
+    overflow: hidden;
+  }
+  .poster-artisti-inner {
+    text-align: center;
+    padding: .8rem;
+  }
+  .poster-artisti-tag {
+    background: #1b3a6b;
+    color: white;
+    font-size: .55rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: .2rem .5rem;
+    display: inline-block;
+    margin-bottom: .3rem;
+  }
+  .poster-artisti-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .poster-artisti-sub {
+    font-size: .6rem;
+    color: var(--navy);
+    margin-top: .2rem;
+  }
+  .poster-artisti-blobs {
+    font-size: 2.5rem;
+    margin: .5rem 0;
+    line-height: 1;
+  }
+
+  .evento-info {
+    padding: .8rem 1rem;
+  }
+
+  .evento-name {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: .9rem;
+  }
+
+  .evento-desc {
+    font-size: .8rem;
+    color: var(--text-muted);
+    margin-top: .2rem;
+    line-height: 1.4;
+  }
+
+  /* ── PENNANEWS ───────────────────────────────────────────── */
+  #news {
+    background: var(--navy);
+    padding: 0;
+  }
+
+  .news-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .news-inner .section-title {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .news-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .news-track {
+    display: flex;
+    transition: transform .4s ease;
+  }
+
+  .news-item {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255,255,255,.06);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .news-text { flex: 1; }
+
+  .news-label {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: .5rem;
+  }
+
+  .news-headline {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: .5rem;
+  }
+
+  .news-date {
+    font-size: .8rem;
+    color: rgba(255,255,255,.5);
+    margin-bottom: .8rem;
+  }
+
+  .news-link {
+    color: var(--gold);
+    font-size: .85rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+  }
+
+  .news-visual {
+    flex-shrink: 0;
+    width: 140px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bando-card {
+    background: #e74c3c;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem;
+    text-align: center;
+  }
+
+  .bando-anni {
+    font-size: .55rem;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.7);
+    text-transform: uppercase;
+    margin-bottom: .3rem;
+  }
+
+  .bando-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: .85rem;
+    line-height: 1.2;
+  }
+
+  .news-dots {
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    cursor: pointer;
+    transition: background .2s;
+    border: none;
+  }
+
+  .dot.active { background: var(--white); }
+
+  /* ── BACHECA ─────────────────────────────────────────────── */
+  .bacheca-carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bacheca-track {
+    display: flex;
+    transition: transform .4s ease;
+  }
+
+  .bacheca-card {
+    min-width: 100%;
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 2rem;
+    color: var(--white);
+  }
+
+  .bacheca-user {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    margin-bottom: 1rem;
+  }
+
+  .bacheca-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bacheca-avatar svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .bacheca-username {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .bacheca-msg {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,.9);
+  }
+
+  .bacheca-dots {
+    display: flex;
+    gap: .6rem;
+    margin-top: 1rem;
+  }
+
+  .bacheca-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(27,58,107,.25);
+    border: 2px solid var(--navy);
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .bacheca-dots .dot.active {
+    background: var(--navy);
+  }
+
+  /* ── CALENDARIO ──────────────────────────────────────────── */
+  #calendario {
+    background: var(--cream);
+    padding: 0;
+  }
+
+  .cal-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .cal-inner .section-title { color: var(--navy); }
+
+  .cal-wrap {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .cal-widget {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 1.5rem;
+    color: var(--white);
+    position: relative;
+    flex: 0 0 auto;
+    min-width: 320px;
+  }
+
+  .cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .cal-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+
+  .cal-year {
+    font-size: 1.2rem;
+    opacity: .7;
+  }
+
+  .cal-arrow {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background .2s;
+  }
+
+  .cal-arrow:hover { background: rgba(255,255,255,.15); }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+  }
+
+  .cal-dayname {
+    font-size: .75rem;
+    font-weight: 600;
+    opacity: .7;
+    padding: .3rem 0;
+    letter-spacing: .04em;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background .15s;
+    position: relative;
+  }
+
+  .cal-day:hover { background: rgba(255,255,255,.15); }
+
+  .cal-day.today {
+    border: 2px solid white;
+    font-weight: 700;
+  }
+
+  .cal-day.has-event {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .cal-day.event-range {
+    background: rgba(255,255,255,.15);
+    border-radius: 4px;
+  }
+
+  .cal-day.selected {
+    background: white;
+    color: var(--navy);
+  }
+
+  .cal-day.empty { opacity: 0; pointer-events: none; }
+
+  .cal-add-btn {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background: var(--navy);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(27,58,107,.4);
+    transition: transform .2s;
+    align-self: flex-start;
+  }
+
+  .cal-add-btn:hover { transform: scale(1.1) rotate(90deg); }
+
+  .eventi-list {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .evento-list-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(27,58,107,.08);
+    align-items: flex-start;
+  }
+
+  .evento-list-item:last-child { border-bottom: none; }
+
+  .evento-list-bar {
+    width: 4px;
+    border-radius: 2px;
+    background: var(--navy);
+    align-self: stretch;
+    flex-shrink: 0;
+    min-height: 50px;
+  }
+
+  
+
+  .evento-list-date {
+    font-family: 'Source Serif 4', serif;
+    font-size: .85rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: .2rem;
+  }
+
+  .evento-list-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: .2rem;
+  }
+
+  .evento-list-org {
+    font-size: .82rem;
+    color: var(--text-muted);
+  }
+
+  .evento-list-org a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    animation: modalIn .25s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(.97); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: .3rem;
+    letter-spacing: .03em;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: .65rem .9rem;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: .9rem;
+    background: var(--white);
+    color: var(--text);
+    transition: border-color .2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: .8rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: .65rem 1.4rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .2s;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid #d0d0d0;
+  }
+
+  .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* ── MAPPA ───────────────────────────────────────────────── */
+  #mappa {
+    padding: 0;
+    background: var(--cream);
+  }
+
+  .mappa-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .mappa-inner .section-title { color: var(--navy); }
+
+  .map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    position: relative;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+    display: block;
+  }
+
+  .map-locations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .location-chip {
+    background: var(--white);
+    border: 1.5px solid rgba(27,58,107,.12);
+    border-radius: var(--radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+  }
+
+  .location-chip:hover {
+    border-color: var(--navy);
+    box-shadow: 0 4px 14px rgba(27,58,107,.1);
+    transform: translateY(-2px);
+  }
+
+  .location-chip-icon {
+    display: none;
+  }
+
+  .location-chip-name {
+    font-weight: 600;
+    font-size: .9rem;
+    color: var(--navy);
+    margin-bottom: .2rem;
+  }
+
+  .location-chip-type {
+    font-size: .78rem;
+    color: var(--text-muted);
+  }
+
+  /* popup overlay for location info */
+  .loc-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .loc-popup.open { display: flex; }
+
+  .loc-popup-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    max-width: 340px;
+    width: 100%;
+    animation: modalIn .25s ease;
+  }
+
+  .loc-popup-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: .7rem;
+  }
+
+  .loc-popup-card p {
+    font-size: .85rem;
+    color: rgba(255,255,255,.8);
+    margin-bottom: .3rem;
+    line-height: 1.5;
+  }
+
+  .loc-popup-link {
+    display: inline-block;
+    margin-top: .8rem;
+    color: var(--gold);
+    font-size: .85rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gold);
+    cursor: pointer;
+  }
+
+  .loc-popup-close {
+    margin-top: 1rem;
+    background: rgba(255,255,255,.12);
+    border: none;
+    color: white;
+    padding: .5rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: .85rem;
+    display: block;
+    width: 100%;
+    transition: background .2s;
+  }
+
+  .loc-popup-close:hover { background: rgba(255,255,255,.2); }
+
+  /* ── CHI SIAMO ───────────────────────────────────────────── */
+  #chisiamo {
+    background: var(--cream);
+    padding: 0;
+  }
+
+  .chisiamo-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .chisiamo-inner .section-title { color: var(--navy); }
+
+  .chisiamo-block {
+    margin-bottom: 3rem;
+  }
+
+  .chisiamo-col-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    padding-bottom: .7rem;
+    border-bottom: 2px solid var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+  .entity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    .entity-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .entity-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+
+  .entity-tile:hover { transform: translateY(-4px); }
+
+  .entity-logo-box {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    margin-bottom: .7rem;
+    /* placeholder rosso – sostituire con <img> */
+  }
+
+  .entity-tile-name {
+    font-family: 'Inter', sans-serif;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  /* entity detail modal */
+  .entity-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .entity-modal-overlay.open { display: flex; }
+
+  .entity-modal {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    animation: modalIn .25s ease;
+  }
+
+  .entity-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .entity-modal-logo-box {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background: #c0392b;
+    border-radius: 10px;
+  }
+
+  .entity-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .entity-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    line-height: 1;
+    padding: 0 .3rem;
+  }
+
+  .entity-modal-section {
+    margin-bottom: 1rem;
+  }
+
+  .entity-modal-section h5 {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--navy);
+    margin-bottom: .4rem;
+    opacity: .7;
+  }
+
+  .entity-modal-section p, .entity-modal-section a {
+    font-size: .88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-decoration: none;
+  }
+
+  .entity-modal-section a { color: var(--accent); }
+
+  /* ── FOOTER ──────────────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.7);
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+  }
+
+
+  /* ── CHAT BUBBLE ─────────────────────────────────────────── */
+  .chat-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(27,58,107,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .chat-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(27,58,107,.55);
+  }
+
+  .chat-panel {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 2rem;
+    width: 320px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,.2);
+    z-index: 998;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalIn .25s ease;
+  }
+
+  .chat-panel.open { display: flex; }
+
+  .chat-header {
+    background: var(--navy);
+    color: white;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chat-header h4 { font-size: .95rem; font-weight: 600; }
+  .chat-header span { font-size: .75rem; opacity: .7; }
+
+  .chat-messages {
+    padding: 1rem;
+    height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    background: var(--cream);
+  }
+
+  .chat-msg {
+    font-size: .82rem;
+    padding: .55rem .8rem;
+    border-radius: 10px;
+    max-width: 80%;
+    line-height: 1.4;
+  }
+
+  .chat-msg.received {
+    background: var(--white);
+    color: var(--text);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+  }
+
+  .chat-msg.sent {
+    background: var(--navy);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+  }
+
+  .chat-login-note {
+    font-size: .78rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: .5rem;
+    background: #fff8e1;
+    border-top: 1px solid #f0e68c;
+  }
+
+  .chat-input-row {
+    display: flex;
+    padding: .7rem;
+    gap: .5rem;
+    background: var(--white);
+    border-top: 1px solid #eee;
+  }
+
+  .chat-input {
+    flex: 1;
+    border: 1.5px solid #ddd;
+    border-radius: 20px;
+    padding: .45rem .9rem;
+    font-family: inherit;
+    font-size: .85rem;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .chat-input:focus { border-color: var(--navy); }
+
+  .chat-send {
+    background: var(--navy);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background .2s;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover { background: var(--navy-dark); }
+
+  /* ── SCROLL ANIMATIONS ───────────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fade-in:nth-child(2) { transition-delay: .1s; }
+  .fade-in:nth-child(3) { transition-delay: .2s; }
+  .fade-in:nth-child(4) { transition-delay: .3s; }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#home">
+    <!-- Logo Pennabilli -->
+    <img class="nav-logo" viewBox="0 0 38 38" fill="none" src="img/stemma-pennabilli.avif"></img>
+    <span class="nav-brand-name">Pennabilli</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#chisiamo">Chi siamo</a></li>
+    <li><a href="#calendario">Calendario</a></li>
+    <li><a href="#mappa">Mappa</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section id="home">
+  <!-- Using a publicly accessible Pennabilli landscape or fallback gradient -->
+  <div class="hero-fallback" style="background: linear-gradient(160deg, #2d4a7a 0%, #1b3a6b 40%, #3a6b5a 100%);">
+    <!-- Stylized hills silhouette -->
+    <img src="img/pennabilli_herosection.jpeg"></img>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-caption">Un mondo di<br>socialità e cultura</div>
+</section>
+
+
+<!-- ── EVENTI ────────────────────────────────────────────── -->
+<section class="section" id="eventi">
+  <h2 class="section-title fade-in">Eventi in programma</h2>
+  <div class="eventi-grid">
+    <div class="evento-card fade-in">
+      <div class="evento-poster poster-venolta">
+        <img src="img/locandina_venolta.jpeg"></img>
+      </div>
+      <div class="evento-info">
+        <div class="evento-name">VENOLTA</div>
+        <div class="evento-desc">Piccolo festival dei balli e delle musiche popolari</div>
+      </div>
+    </div>
+    <div class="evento-card fade-in">
+      <div class="evento-poster poster-artisti">
+        <div class="poster-artisti-inner">
+          <img src="img/locandina_ArtistiInPiazza.jpeg"></img>
+        </div>
+      </div>
+      <div class="evento-info">
+        <div class="evento-name">Artisti in Piazza</div>
+        <div class="evento-desc">Festival Internazionale di Arti Performative</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PENNANEWS ─────────────────────────────────────────── -->
+<section id="news">
+  <div class="news-inner">
+    <h2 class="section-title fade-in">PennaNEWS</h2>
+    <div class="news-carousel fade-in">
+      <div class="news-track" id="newsTrack">
+        <!-- Slide 1 -->
+        <div class="news-item">
+          <div class="news-text">
+            <div class="news-label">Bando Nazionale</div>
+            <div class="news-headline">Apertura bando nazionale per associazioni culturali</div>
+            <div class="news-date">Chiusura 24/09/2026</div>
+            <a class="news-link" href="#">Scopri di più</a>
+          </div>
+          <div class="news-visual">
+            <div class="bando-card">
+              <div class="bando-anni">25 ANNI</div>
+              <div class="bando-title">BANDO 2026.5<br>CULTURA<br>PER TUTTI</div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="news-item">
+          <div class="news-text">
+            <div class="news-label">Comune di Pennabilli</div>
+            <div class="news-headline">Nuovo regolamento per l'uso degli spazi pubblici comunali</div>
+            <div class="news-date">Pubblicato il 01/06/2026</div>
+            <a class="news-link" href="#">Leggi l'avviso</a>
+          </div>
+          <div class="news-visual">
+            <div class="bando-card" style="background:#2d6fa4;">
+              <div class="bando-anni">COMUNE</div>
+              <div class="bando-title">AVVISO<br>PUBBLICO<br>2026</div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="news-item">
+          <div class="news-text">
+            <div class="news-label">GAL Montefeltro</div>
+            <div class="news-headline">Bando GAL per progetti di sviluppo locale – scadenza luglio</div>
+            <div class="news-date">Chiusura 15/07/2026</div>
+            <a class="news-link" href="#">Vai al bando</a>
+          </div>
+          <div class="news-visual">
+            <div class="bando-card" style="background:#3a7d44;">
+              <div class="bando-anni">GAL</div>
+              <div class="bando-title">SVILUPPO<br>LOCALE<br>2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="news-dots" id="newsDots">
+      <button class="dot active" onclick="goNews(0)"></button>
+      <button class="dot" onclick="goNews(1)"></button>
+      <button class="dot" onclick="goNews(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ── BACHECA ───────────────────────────────────────────── -->
+<section class="section" id="bacheca">
+  <h2 class="section-title fade-in">Bacheca</h2>
+  <div class="fade-in">
+    <div class="bacheca-carousel">
+      <div class="bacheca-track" id="bachTrack">
+        <div class="bacheca-card">
+          <div class="bacheca-user">
+            <div class="bacheca-avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" fill="rgba(255,255,255,.7)"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="bacheca-username">Mario Rossi</span>
+          </div>
+          <div class="bacheca-msg">Cerco spazio per un evento in data 02/07/2026, circa 200 persone</div>
+        </div>
+        <div class="bacheca-card">
+          <div class="bacheca-user">
+            <div class="bacheca-avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" fill="rgba(255,255,255,.7)"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="bacheca-username">Ass. Teatrale</span>
+          </div>
+          <div class="bacheca-msg">Offro furgone per trasporto materiali nel weekend del 14/06/2026</div>
+        </div>
+        <div class="bacheca-card">
+          <div class="bacheca-user">
+            <div class="bacheca-avatar">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" fill="rgba(255,255,255,.7)"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="bacheca-username">Orto dei Frutti</span>
+          </div>
+          <div class="bacheca-msg">Cerco volontari per allestimento mostra fotografica – sabato 20/06</div>
+        </div>
+      </div>
+    </div>
+    <div class="bacheca-dots" id="bachDots">
+      <button class="dot active" onclick="goBach(0)"></button>
+      <button class="dot" onclick="goBach(1)"></button>
+      <button class="dot" onclick="goBach(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHI SIAMO ─────────────────────────────────────────── -->
+<section id="chisiamo">
+  <div class="chisiamo-inner">
+    <h2 class="section-title fade-in">Chi siamo</h2>
+
+    <!-- Rete delle Associazioni -->
+    <div class="chisiamo-block fade-in">
+      <div class="chisiamo-col-title">Rete delle Associazioni</div>
+      <div class="entity-grid">
+        <div class="entity-tile" onclick="openEntity('ultimo')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_UltimoPunto.png" alt="Logo dell'Associazione Ultimo Punto"></img>
+          </div>
+          <span class="entity-tile-name">Ultimo Punto</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('antiquariato')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Antiquariato.jpeg" alt="Logo dell'associazione Pennabilli Antiquariato"></img>
+          </div>
+          <span class="entity-tile-name">Pennabilli Antiquariato</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('chiocciola')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Chiocciola.png" alt="Logo dell'associazione Chiocciola - La Casa del Nomade"></img>
+          </div>
+          <span class="entity-tile-name">Chiocciola la casa del nomade</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('tonino')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_ToninoGuerra.png" alt="Logo dell'Associazione Tonino Guerra"></img>
+          </div>
+          <span class="entity-tile-name">Ass. Tonino Guerra</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('proloco')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_ProLoco.png" alt="Logo della Pro Loco"></img>
+          </div>
+          <span class="entity-tile-name">Pro Loco Pennabilli</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('selvatica')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Selvatica.png" alt="Logo di Selvatica"></img>
+          </div>
+          <span class="entity-tile-name">Selvatica</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enti Esterni e Aziende -->
+    <div class="chisiamo-block fade-in">
+      <div class="chisiamo-col-title">Enti Esterni e Aziende</div>
+      <div class="entity-grid">
+        <div class="entity-tile" onclick="openEntity('comune')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/stemma-pennabilli.avif" alt="Stemma del Comune"></img>
+          </div>
+          <span class="entity-tile-name">Comune di Pennabilli</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('gal')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_GAL.png" alt="Logo del GAL Valli Marecchia e Conca"></img>
+          </div>
+          <span class="entity-tile-name">GAL Montefeltro</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('valpharma')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Valpharma.png" alt="Logo di Valpharma"></img>
+          </div>
+          <span class="entity-tile-name">Valpharma International S.p.A</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('diocesi')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Diocesi.png" alt="Logo della Diocesi San Marino-Montefeltro"></img>
+          </div>
+          <span class="entity-tile-name">Diocesi San Marino-Montefeltro</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('scuola')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_IstitutoScolastico.png" alt="Logo dell'Istituto Scolastico"></img>
+          </div>
+          <span class="entity-tile-name">Istituto Scolastico</span>
+        </div>
+        <div class="entity-tile" onclick="openEntity('caco')">
+          <div class="entity-logo-box">
+            <img class="entity-logo-box" src="img/loghi/logo_Caco.jpeg" alt="Logo di Ca'co Living"></img>
+          </div>
+          <span class="entity-tile-name">Ca'co Living</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CALENDARIO ────────────────────────────────────────── -->
+<section id="calendario">
+  <div class="cal-inner">
+    <h2 class="section-title fade-in">Calendario condiviso</h2>
+    <div class="cal-wrap">
+      <div class="cal-widget fade-in">
+        <div class="cal-nav">
+          <button class="cal-arrow" id="prevMonth">&#8592;</button>
+          <div>
+            <span class="cal-month" id="calMonth">Giugno</span>
+          </div>
+          <span class="cal-year" id="calYear">2026</span>
+          <button class="cal-arrow" id="nextMonth">&#8594;</button>
+        </div>
+        <div class="cal-grid" id="calGrid">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;flex:1;min-width:0;">
+        <button class="cal-add-btn" id="addEventBtn" title="Aggiungi evento">+</button>
+
+        <div class="eventi-list fade-in" id="eventiList">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MAPPA ─────────────────────────────────────────────── -->
+<section id="mappa">
+  <div class="mappa-inner">
+    <h2 class="section-title fade-in">Mappa del territorio</h2>
+    <div class="map-container fade-in">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3002.3!2d12.2626!3d43.8168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132c3b0!2sPennabilli!5e0!3m2!1sit!2sit!4v1600000000000!5m2!1sit!2sit"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mappa di Pennabilli">
+      </iframe>
+    </div>
+    <div class="map-locations fade-in">
+      <div class="location-chip" onclick="showLoc('chiocciola')">
+        <div class="location-chip-icon">🐌</div>
+        <div class="location-chip-name">Chiocciola – Casa del Nomade</div>
+        <div class="location-chip-type">Spazio polivalente · Via del Teatro, 1</div>
+      </div>
+      <div class="location-chip" onclick="showLoc('orto')">
+        <div class="location-chip-icon">🌿</div>
+        <div class="location-chip-name">Valpharma</div>
+        <div class="location-chip-type">Azienda di prodotti farmaceutici · Via G. Morgagni</div>
+      </div>
+      <div class="location-chip" onclick="showLoc('monastero')">
+        <div class="location-chip-icon">⛪</div>
+        <div class="location-chip-name">Monastero Agostiniano</div>
+        <div class="location-chip-type">Spazio religioso · Via s. Nicolo</div>
+      </div>
+      <div class="location-chip" onclick="showLoc('comune')">
+        <div class="location-chip-icon">🏛️</div>
+        <div class="location-chip-name">Palazzo Comunale</div>
+        <div class="location-chip-type">Ente pubblico · Piazza Vittorio Emanuele</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">
+    <img class="nav-logo" viewBox="0 0 38 38" fill="none" src="img/stemma-pennabilli.avif"></img>
+    <span class="footer-logo-name">Pennabilli</span>
+  </div>
+  <p style="font-size:.82rem;">Portale delle associazioni e degli enti del territorio</p>
+</footer>
+
+<!-- ── MODALS ────────────────────────────────────────────── -->
+
+<!-- Add Event Modal -->
+<div class="modal-overlay" id="eventModal">
+  <div class="modal">
+    <h3>Aggiungi un evento</h3>
+    <div class="form-group">
+      <label>Titolo evento *</label>
+      <input type="text" id="evTitle" placeholder="es. Riunione annuale">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Data inizio *</label>
+        <input type="date" id="evStart">
+      </div>
+      <div class="form-group">
+        <label>Data fine</label>
+        <input type="date" id="evEnd">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Organizzatore</label>
+      <input type="text" id="evOrg" placeholder="Nome associazione/ente">
+    </div>
+    <div class="form-group">
+      <label>Descrizione</label>
+      <textarea id="evDesc" placeholder="Breve descrizione dell'evento..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('eventModal')">Annulla</button>
+      <button class="btn btn-primary" onclick="addEvent()">Aggiungi</button>
+    </div>
+  </div>
+</div>
+
+<!-- Entity Detail Modal -->
+<div class="entity-modal-overlay" id="entityModal">
+  <div class="entity-modal">
+    <div class="entity-modal-header">
+      <div class="entity-modal-logo-box"></div>
+      <div style="flex:1">
+        <h3 class="entity-modal-title" id="emTitle"></h3>
+      </div>
+      <button class="entity-modal-close" onclick="closeModal('entityModal')">×</button>
+    </div>
+    <div class="entity-modal-section">
+      <h5>Mission</h5>
+      <p id="emMission"></p>
+    </div>
+    <div class="entity-modal-section">
+      <h5>Contatti</h5>
+      <p id="emContact"></p>
+    </div>
+    <div class="entity-modal-section">
+      <h5>Spazi disponibili</h5>
+      <p id="emSpaces"></p>
+    </div>
+    <button class="btn btn-primary" style="width:100%;margin-top:.5rem" onclick="closeModal('entityModal')">Chiudi</button>
+  </div>
+</div>
+
+<!-- Location Popup -->
+<div class="loc-popup" id="locPopup">
+  <div class="loc-popup-card">
+    <h4 id="lpTitle"></h4>
+    <p id="lpAddress"></p>
+    <p id="lpEmail"></p>
+    <p id="lpPhone"></p>
+    <span class="loc-popup-link" onclick="closeModal('locPopup')">Scopri di più →</span>
+    <button class="loc-popup-close" onclick="closeModal('locPopup')">Chiudi</button>
+  </div>
+</div>
+
+<!-- ── CHAT ──────────────────────────────────────────────── -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" title="Chat di rete">💬</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div>
+      <h4>Chat di Rete</h4>
+      <span>Solo per account registrati</span>
+    </div>
+    <button onclick="toggleChat()" style="background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg received">Ciao! Sono la Pro Loco. Avete spazio per 50 persone sabato 28?</div>
+    <div class="chat-msg sent">Certo, la sala parrocchiale è disponibile dalle 18. Vi mando i dettagli.</div>
+    <div class="chat-msg received">Perfetto, grazie mille! 🙏</div>
+  </div>
+  <div class="chat-login-note">🔒 Accedi con le credenziali della tua associazione</div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────
+const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+const DAYS_SHORT = ['L','Ma','Me','G','V','S','D'];
+
+let calDate = new Date(2026, 5, 1); // June 2026
+
+let events = [
+  { id: 1, title: 'Festa di paese', start: '2026-06-07', end: '2026-06-07', org: 'Tutte le associazioni di Pennabilli', orgLink: null },
+  { id: 2, title: 'Artisti in Piazza', start: '2026-06-10', end: '2026-06-13', org: 'Ultimo punto', orgLink: 'ultimo' },
+  { id: 3, title: 'Mercato dell\'antiquariato', start: '2026-06-26', end: '2026-06-28', org: 'Pennabilli antiquariato', orgLink: 'antiquariato' },
+];
+
+// ── CALENDAR ────────────────────────────────────────────────
+function renderCal() {
+  const year = calDate.getFullYear();
+  const month = calDate.getMonth();
+  document.getElementById('calMonth').textContent = MONTHS_IT[month];
+  document.getElementById('calYear').textContent = year;
+
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // Day headers
+  DAYS_SHORT.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dayname';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+  // Convert to Mon-first: Mon=0..Sun=6
+  const firstDayMon = (firstDay + 6) % 7;
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+
+  // Empty cells
+  for (let i = 0; i < firstDayMon; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day empty';
+    el.textContent = '';
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = d;
+
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = today.getFullYear()===year && today.getMonth()===month && today.getDate()===d;
+    if (isToday) el.classList.add('today');
+
+    // Check events
+    const hasEv = events.some(e => dateStr >= e.start && dateStr <= e.end);
+    if (hasEv) el.classList.add('has-event');
+
+    grid.appendChild(el);
+  }
+}
+
+function renderEventList() {
+  const list = document.getElementById('eventiList');
+  const year = calDate.getFullYear();
+  const month = calDate.getMonth();
+  const monthEvents = events.filter(e => {
+    const eYear = parseInt(e.start.split('-')[0]);
+    const eMonth = parseInt(e.start.split('-')[1]) - 1;
+    const eYearEnd = parseInt(e.end.split('-')[0]);
+    const eMonthEnd = parseInt(e.end.split('-')[1]) - 1;
+    return (eYear === year && eMonth === month) || (eYearEnd === year && eMonthEnd === month);
+  });
+
+  list.innerHTML = '';
+  monthEvents.forEach(ev => {
+    const item = document.createElement('div');
+    item.className = 'evento-list-item';
+    const [sy,sm,sd] = ev.start.split('-');
+    const [ey,em,ed] = ev.end.split('-');
+    const sameDay = ev.start === ev.end;
+    const dateLabel = sameDay
+      ? `${parseInt(sd)} ${MONTHS_IT[parseInt(sm)-1]}`
+      : `${parseInt(sd)}–${parseInt(ed)} ${MONTHS_IT[parseInt(em)-1]}`;
+    const orgHtml = ev.orgLink
+      ? `Evento organizzato da <a href="#chisiamo" onclick="openEntity('${ev.orgLink}')">${ev.org}</a>`
+      : `Evento organizzato da ${ev.org}`;
+
+    item.innerHTML = `
+      <div class="evento-list-bar"></div>
+      <div class="evento-list-content">
+        <div class="evento-list-date">${dateLabel}</div>
+        <div class="evento-list-title">${ev.title}</div>
+        <div class="evento-list-org">${orgHtml}</div>
+      </div>`;
+    list.appendChild(item);
+  });
+
+  if (!monthEvents.length) {
+    list.innerHTML = '<p style="color:var(--text-muted);font-size:.9rem;padding:1rem 0">Nessun evento questo mese.</p>';
+  }
+}
+
+document.getElementById('prevMonth').onclick = () => {
+  calDate.setMonth(calDate.getMonth() - 1);
+  renderCal(); renderEventList();
+};
+document.getElementById('nextMonth').onclick = () => {
+  calDate.setMonth(calDate.getMonth() + 1);
+  renderCal(); renderEventList();
+};
+
+document.getElementById('addEventBtn').onclick = () => openModal('eventModal');
+
+function addEvent() {
+  const title = document.getElementById('evTitle').value.trim();
+  const start = document.getElementById('evStart').value;
+  const end = document.getElementById('evEnd').value || start;
+  const org = document.getElementById('evOrg').value.trim() || 'Utente registrato';
+  if (!title || !start) { alert('Compila almeno titolo e data di inizio.'); return; }
+  events.push({ id: Date.now(), title, start, end, org, orgLink: null });
+  closeModal('eventModal');
+  document.getElementById('evTitle').value = '';
+  document.getElementById('evStart').value = '';
+  document.getElementById('evEnd').value = '';
+  document.getElementById('evOrg').value = '';
+  renderCal(); renderEventList();
+}
+
+// ── NEWS CAROUSEL ────────────────────────────────────────────
+let newsIdx = 0;
+function goNews(i) {
+  newsIdx = i;
+  document.getElementById('newsTrack').style.transform = `translateX(-${i*100}%)`;
+  document.querySelectorAll('#newsDots .dot').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+setInterval(() => goNews((newsIdx + 1) % 3), 5000);
+
+// ── BACHECA CAROUSEL ─────────────────────────────────────────
+let bachIdx = 0;
+function goBach(i) {
+  bachIdx = i;
+  document.getElementById('bachTrack').style.transform = `translateX(-${i*100}%)`;
+  document.querySelectorAll('#bachDots .dot').forEach((d,j) => d.classList.toggle('active', j===i));
+}
+setInterval(() => goBach((bachIdx + 1) % 3), 6000);
+
+// ── MODALS ───────────────────────────────────────────────────
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// Close modals on overlay click
+['eventModal','entityModal','locPopup'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) closeModal(id);
+  });
+});
+
+// ── ENTITIES ─────────────────────────────────────────────────
+const entityData = {
+  ultimo: { title: 'Ultimo Punto', mission: 'Organizzazione culturale che promuove arti performative, teatro di strada e festival internazionali. Principale organizzatore di Artisti in Piazza.', contact: 'info@ultimopunto.it | Tel. +39 0541 928xxx', spaces: 'Palco del teatro comunale, piazza centrale durante i festival' },
+  antiquariato: { title: 'Pennabilli Antiquariato', mission: 'Associazione dedicata alla promozione e valorizzazione del patrimonio antiquariale locale con mercati periodici.', contact: 'info@pennabilliantic.it | Tel. +39 0541 929xxx', spaces: 'Aree mercatali in centro storico' },
+  tonino: { title: 'Associazione Tonino Guerra', mission: 'Associazione dedicata alla promozione della conoscenza, dello studio, della diffusione del opera artistica di Tonino Guerra', contact: 'associazionetoninoguerra@gmail.com', spaces: 'Museo I Luoghi del Anima, Archivio' },
+  comune: { title: 'Comune di Pennabilli', mission: 'Amministrazione comunale – ente responsabile della gestione degli spazi pubblici, delle autorizzazioni e delle risorse territoriali.', contact: 'comune@pennabilli.rn.it | Tel. 0541 928511', spaces: 'Sala consiliare, piazze pubbliche, parcheggi, palestre scolastiche' },
+  gal: { title: 'GAL Montefeltro Sviluppo', mission: 'Gruppo di Azione Locale per lo sviluppo rurale. Gestisce bandi europei e programmi di sviluppo per il territorio del Montefeltro.', contact: 'info@galmontefeltro.it', spaces: 'Uffici per riunioni (su prenotazione)' },
+  chiocciola: { title: 'Chiocciola – La Casa del Nomade', mission: 'Spazio polivalente per incontri, residenze artistiche, laboratori e ospitalità alternativa nel cuore di Pennabilli.', contact: 'info@chiocciolalacasadelnomade.it | +39 3204510733', spaces: 'Sala eventi (80 posti), cucina condivisa, cortile, camere ospiti' },
+  proloco: { title: 'Pro Loco Pennabilli', mission: 'Associazione per la promozione turistica e culturale di Pennabilli, organizza eventi di accoglienza e valorizzazione del territorio.', contact: 'proloco@pennabilli.it', spaces: 'Ufficio turistico, sala riunioni (20 posti)' },
+  selvatica: { title: 'Selvatica', mission: 'Associazione che promuove educazione al paesaggio e la crescita personale attraverso avventura ed esplorazione nella natura.', contact: 'svadoaselvatica@gmail.com', spaces: 'Casa Caroni, MUSSS Museo Naturalistico del Sasso Simone Simoncello.' },
+  scuola: { title: 'Istituto Scolastico', mission: 'Istituto comprensivo di Pennabilli – promotore di progetti educativi, collabora con le associazioni per attività extrascolastiche.', contact: 'ic.pennabilli@scuole.rn.it | Tel. 0541 928xxx', spaces: 'Palestra, aula magna (80 posti), cortile' },
+  macelleria: { title: 'Antica Macelleria Venturi', mission: 'Storica macelleria del borgo, punto di riferimento per i prodotti tipici locali e partner di eventi gastronomici territoriali.', contact: 'venturi@pennabilli.it | Via del Roccione', spaces: 'Spazio esterno per degustazioni' },
+  diocesi: { title: 'Diocesi San Marino-Montefeltro', mission: 'Ente religioso con presenza capillare nel territorio. Gestisce spazi parrocchiali per iniziative comunitarie e culturali.', contact: 'diocesi@sanmarino-montefeltro.it', spaces: 'Sala parrocchiale (120 posti), oratorio, giardino' },
+};
+
+function openEntity(key) {
+  const e = entityData[key];
+  if (!e) return;
+  document.getElementById('emTitle').textContent = e.title;
+  document.getElementById('emMission').textContent = e.mission;
+  document.getElementById('emContact').textContent = e.contact;
+  document.getElementById('emSpaces').textContent = e.spaces;
+  openModal('entityModal');
+}
+
+// ── LOCATIONS ────────────────────────────────────────────────
+const locData = {
+  chiocciola: { title: 'Chiocciola – La Casa del Nomade', address: 'Via del Teatro, 1 – Pennabilli', email: 'info@chiocciolalacasadelnomade.it', phone: '+39 3204510733' },
+  orto: { title: 'Orto dei Frutti Dimenticati', address: 'Via S. Francesco – Pennabilli', email: 'orto@pennabilli.it', phone: '' },
+  monastero: { title: 'Monastero Agostiniano S. Antonio', address: 'Via S. Nicolo – Pennabilli', email: 'monastero@sanmarino-montefeltro.it', phone: '' },
+  comune: { title: 'Palazzo Comunale', address: 'Piazza Vittorio Emanuele – Pennabilli', email: 'comune@pennabilli.rn.it', phone: '0541 928511' },
+};
+
+function showLoc(key) {
+  const l = locData[key];
+  if (!l) return;
+  document.getElementById('lpTitle').textContent = l.title;
+  document.getElementById('lpAddress').textContent = l.address;
+  document.getElementById('lpEmail').textContent = l.email ? l.email : '';
+  document.getElementById('lpPhone').textContent = l.phone ? l.phone : '';
+  openModal('locPopup');
+}
+
+// ── CHAT ────────────────────────────────────────────────────
+function toggleChat() {
+  document.getElementById('chatPanel').classList.toggle('open');
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const msgs = document.getElementById('chatMessages');
+  const el = document.createElement('div');
+  el.className = 'chat-msg sent';
+  el.textContent = msg;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  input.value = '';
+}
+
+// ── SCROLL ANIMATIONS ────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── NAV ACTIVE ───────────────────────────────────────────────
+const sections = ['home','chisiamo','calendario','mappa'];
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = 'home';
+  sections.forEach(id => {
+    const s = document.getElementById(id);
+    if (s && window.scrollY >= s.offsetTop - 100) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+// ── INIT ─────────────────────────────────────────────────────
+renderCal();
+renderEventList();
+</script>
+</body>
+</html>
