@@ -1006,7 +1006,6 @@
     width: 64px;
     height: 64px;
     flex-shrink: 0;
-    background: #c0392b;
     border-radius: 10px;
   }
 
@@ -1809,17 +1808,19 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 
 // ── ENTITIES ─────────────────────────────────────────────────
 const entityData = {
-  ultimo: { title: 'Ultimo Punto', mission: 'Organizzazione culturale che promuove arti performative, teatro di strada e festival internazionali. Principale organizzatore di Artisti in Piazza.', contact: 'info@ultimopunto.it | Tel. +39 0541 928xxx', spaces: 'Palco del teatro comunale, piazza centrale durante i festival' },
-  antiquariato: { title: 'Pennabilli Antiquariato', mission: 'Associazione dedicata alla promozione e valorizzazione del patrimonio antiquariale locale con mercati periodici.', contact: 'info@pennabilliantic.it | Tel. +39 0541 929xxx', spaces: 'Aree mercatali in centro storico' },
-  tonino: { title: 'Associazione Tonino Guerra', mission: 'Associazione dedicata alla promozione della conoscenza, dello studio, della diffusione del opera artistica di Tonino Guerra', contact: 'associazionetoninoguerra@gmail.com', spaces: 'Museo I Luoghi del Anima, Archivio' },
-  comune: { title: 'Comune di Pennabilli', mission: 'Amministrazione comunale – ente responsabile della gestione degli spazi pubblici, delle autorizzazioni e delle risorse territoriali.', contact: 'comune@pennabilli.rn.it | Tel. 0541 928511', spaces: 'Sala consiliare, piazze pubbliche, parcheggi, palestre scolastiche' },
-  gal: { title: 'GAL Montefeltro Sviluppo', mission: 'Gruppo di Azione Locale per lo sviluppo rurale. Gestisce bandi europei e programmi di sviluppo per il territorio del Montefeltro.', contact: 'info@galmontefeltro.it', spaces: 'Uffici per riunioni (su prenotazione)' },
-  chiocciola: { title: 'Chiocciola – La Casa del Nomade', mission: 'Spazio polivalente per incontri, residenze artistiche, laboratori e ospitalità alternativa nel cuore di Pennabilli.', contact: 'info@chiocciolalacasadelnomade.it | +39 3204510733', spaces: 'Sala eventi (80 posti), cucina condivisa, cortile, camere ospiti' },
-  proloco: { title: 'Pro Loco Pennabilli', mission: 'Associazione per la promozione turistica e culturale di Pennabilli, organizza eventi di accoglienza e valorizzazione del territorio.', contact: 'proloco@pennabilli.it', spaces: 'Ufficio turistico, sala riunioni (20 posti)' },
-  selvatica: { title: 'Selvatica', mission: 'Associazione che promuove educazione al paesaggio e la crescita personale attraverso avventura ed esplorazione nella natura.', contact: 'svadoaselvatica@gmail.com', spaces: 'Casa Caroni, MUSSS Museo Naturalistico del Sasso Simone Simoncello.' },
-  scuola: { title: 'Istituto Scolastico', mission: 'Istituto comprensivo di Pennabilli – promotore di progetti educativi, collabora con le associazioni per attività extrascolastiche.', contact: 'ic.pennabilli@scuole.rn.it | Tel. 0541 928xxx', spaces: 'Palestra, aula magna (80 posti), cortile' },
-  macelleria: { title: 'Antica Macelleria Venturi', mission: 'Storica macelleria del borgo, punto di riferimento per i prodotti tipici locali e partner di eventi gastronomici territoriali.', contact: 'venturi@pennabilli.it | Via del Roccione', spaces: 'Spazio esterno per degustazioni' },
-  diocesi: { title: 'Diocesi San Marino-Montefeltro', mission: 'Ente religioso con presenza capillare nel territorio. Gestisce spazi parrocchiali per iniziative comunitarie e culturali.', contact: 'diocesi@sanmarino-montefeltro.it', spaces: 'Sala parrocchiale (120 posti), oratorio, giardino' },
+  ultimo: { title: 'Ultimo Punto', icon: 'img/loghi/logo_UltimoPunto.png', mission: 'Organizzazione culturale che promuove arti performative, teatro di strada e festival internazionali. Principale organizzatore di Artisti in Piazza.', contact: 'info@ultimopunto.it | Tel. +39 0541 928xxx', spaces: 'Palco del teatro comunale, piazza centrale durante i festival' },
+  antiquariato: { title: 'Pennabilli Antiquariato', icon: 'img/loghi/logo_Antiquariato.jpeg', mission: 'Associazione dedicata alla promozione e valorizzazione del patrimonio antiquariale locale con mercati periodici.', contact: 'info@pennabilliantic.it | Tel. +39 0541 929xxx', spaces: 'Aree mercatali in centro storico' },
+  tonino: { title: 'Associazione Tonino Guerra', icon: 'img/loghi/logo_ToninoGuerra.png', mission: 'Associazione dedicata alla promozione della conoscenza, dello studio, della diffusione del opera artistica di Tonino Guerra', contact: 'associazionetoninoguerra@gmail.com', spaces: 'Museo I Luoghi del Anima, Archivio' },
+  comune: { title: 'Comune di Pennabilli', icon: 'img/stemma-pennabilli.avif', mission: 'Amministrazione comunale – ente responsabile della gestione degli spazi pubblici, delle autorizzazioni e delle risorse territoriali.', contact: 'comune@pennabilli.rn.it | Tel. 0541 928511', spaces: 'Sala consiliare, piazze pubbliche, parcheggi, palestre scolastiche' },
+  gal: { title: 'GAL Montefeltro Sviluppo', icon: 'img/loghi/logo_GAL.png', mission: 'Gruppo di Azione Locale per lo sviluppo rurale. Gestisce bandi europei e programmi di sviluppo per il territorio del Montefeltro.', contact: 'info@galmontefeltro.it', spaces: 'Uffici per riunioni (su prenotazione)' },
+  chiocciola: { title: 'Chiocciola – La Casa del Nomade', icon: 'img/loghi/logo_Chiocciola.png', mission: 'Spazio polivalente per incontri, residenze artistiche, laboratori e ospitalità alternativa nel cuore di Pennabilli.', contact: 'info@chiocciolalacasadelnomade.it | +39 3204510733', spaces: 'Sala eventi (80 posti), cucina condivisa, cortile, camere ospiti' },
+  proloco: { title: 'Pro Loco Pennabilli', icon: 'img/loghi/logo_ProLoco.png', mission: 'Associazione per la promozione turistica e culturale di Pennabilli, organizza eventi di accoglienza e valorizzazione del territorio.', contact: 'proloco@pennabilli.it', spaces: 'Ufficio turistico, sala riunioni (20 posti)' },
+  valpharma: { title: 'Valpharma International S.p.A', icon: 'img/loghi/logo_Valpharma.png', mission: 'Azienda farmaceutica di riferimento nel territorio, produce e distribuisce prodotti farmaceutici e parafarmaceutici.', contact: 'info@valpharma.it | Tel. 0541 928xxx', spaces: 'Azienda privata' },
+  selvatica: { title: 'Selvatica', icon: 'img/loghi/logo_Selvatica.png', mission: 'Associazione che promuove educazione al paesaggio e la crescita personale attraverso avventura ed esplorazione nella natura.', contact: 'svadoaselvatica@gmail.com', spaces: 'Casa Caroni, MUSSS Museo Naturalistico del Sasso Simone Simoncello.' },
+  scuola: { title: 'Istituto Scolastico', icon: 'img/loghi/logo_IstitutoScolastico.png', mission: 'Istituto comprensivo di Pennabilli – promotore di progetti educativi, collabora con le associazioni per attività extrascolastiche.', contact: 'ic.pennabilli@scuole.rn.it | Tel. 0541 928xxx', spaces: 'Palestra, aula magna (80 posti), cortile' },
+  caco: { title: "Ca'co Living", icon: 'img/loghi/logo_Caco.jpeg', mission: 'Spazio di coworking e residenza creativa nel centro storico di Pennabilli.', contact: 'info@caco.it', spaces: 'Coworking, sala eventi' },
+  macelleria: { title: 'Antica Macelleria Venturi', icon: 'img/loghi/logo_Antiquariato.jpeg', mission: 'Storica macelleria del borgo, punto di riferimento per i prodotti tipici locali e partner di eventi gastronomici territoriali.', contact: 'venturi@pennabilli.it | Via del Roccione', spaces: 'Spazio esterno per degustazioni' },
+  diocesi: { title: 'Diocesi San Marino-Montefeltro', icon: 'img/loghi/logo_Diocesi.png', mission: 'Ente religioso con presenza capillare nel territorio. Gestisce spazi parrocchiali per iniziative comunitarie e culturali.', contact: 'diocesi@sanmarino-montefeltro.it', spaces: 'Sala parrocchiale (120 posti), oratorio, giardino' },
 };
 
 function openEntity(key) {
@@ -1829,6 +1830,8 @@ function openEntity(key) {
   document.getElementById('emMission').textContent = e.mission;
   document.getElementById('emContact').textContent = e.contact;
   document.getElementById('emSpaces').textContent = e.spaces;
+  const logoBox = document.querySelector('.entity-modal-logo-box');
+  logoBox.innerHTML = `<img src="${e.icon}" alt="Logo ${e.title}" style="width:100%;height:100%;object-fit:contain;border-radius:10px;">`;
   openModal('entityModal');
 }
 
